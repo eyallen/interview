@@ -1,16 +1,32 @@
-#include <vector>
 #include <iostream>
+#include <unordered_map>
+#include <vector>
 
 using namespace std;
 
 static vector<int> twoSum(vector<int>& nums, int target)
 {
-    if (nums.size() < 2)
+    vector<int> results;
+
+    // Map where key is number and value is index
+    unordered_map<int, int> map;
+
+    for (int i = 0; i < nums.size(); i++)
     {
-        return {-1, -1};
+        int toFind = target - nums[i];
+        if (map.find(toFind) != map.end())
+        {
+            results.push_back(map[toFind]);
+            results.push_back(i);
+            break;
+        }
+        else
+        {
+            map[nums[i]] = i;
+        }
     }
 
-    return {-1, -1};
+    return results;
 }
 
 void printVector(vector<int> v)
@@ -29,7 +45,9 @@ void printVector(vector<int> v)
 
 int main()
 {
-    vector<int> test = {0};
-    vector<int> result = twoSum(test, 0);
-    printVector(result);
+    vector<int> test = {2,7,11,15};
+    printVector(twoSum(test, 9));
+    printVector(twoSum(test, 17));
+    printVector(twoSum(test, 26));
+    printVector(twoSum(test, 0));
 }
