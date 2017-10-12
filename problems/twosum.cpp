@@ -4,6 +4,10 @@
 
 using namespace std;
 
+/*
+ * Given an array of integers, return indices of the two numbers such that they add up to a specific target.
+ * Assume exactly one solution.
+ */
 static vector<int> twoSum(vector<int>& nums, int target)
 {
     vector<int> results;
