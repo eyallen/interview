@@ -1,4 +1,5 @@
 #include <iostream>
+#include <climits>
 #include <cmath>
 
 using namespace std;
@@ -17,8 +18,13 @@ int reverseInteger(int x)
     {
         auto digit = x % 10;
 
-        reversed = i > 0 ? reversed * 10 : reversed;
-        reversed += digit;
+        // Will we overflow?
+        if (reversed > INT_MAX / 10)
+        {
+            return 0;
+        }
+
+        reversed = reversed * 10 + x % 10;
 
         // Did we overflow?
         if (reversed < 0)
@@ -26,7 +32,6 @@ int reverseInteger(int x)
             return 0;
         }
 
-        x -= digit;
         x /= 10;
     }
 
@@ -39,4 +44,5 @@ int main()
     cout << reverseInteger(300) << "\n";
     cout << reverseInteger(-123) << "\n";
     cout << reverseInteger(1000000003) << "\n";
+    cout << reverseInteger(1534236469) << "\n";
 }
