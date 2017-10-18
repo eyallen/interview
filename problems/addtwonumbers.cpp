@@ -74,7 +74,6 @@ ListNode* vectorToListNode(vector<int> list)
     return ptr;
 }
 
-
 string listNodeToString(ListNode* node) 
 {
     string result;

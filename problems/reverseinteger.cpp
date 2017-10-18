@@ -16,7 +16,6 @@ int reverseInteger(int x)
 
     for (int i = 0; x > 0; i++)
     {
-        auto digit = x % 10;
 
         // Will we overflow?
         if (reversed > INT_MAX / 10)
