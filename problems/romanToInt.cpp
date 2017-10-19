@@ -45,6 +45,5 @@ int main()
     cout << romanToInt("XXIV") << "\n";
     cout << romanToInt("XC") << "\n";
     cout << romanToInt("XCII") << "\n";
-    cout << romanToInt("XCIII") << "\n";
     cout << romanToInt("LXIV") << "\n";
 }
