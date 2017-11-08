@@ -11,6 +11,7 @@ struct Node
     Node(int val)
     {
         value = val;
+        next = nullptr;
     }
 };
 
@@ -24,7 +25,7 @@ Node* vectorToLinkedList(vector<int> vec)
         if (head == nullptr)
         {
             head = node;
-            curr = head;
+            curr = node;
         }
         else 
         {
