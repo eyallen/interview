@@ -1,5 +1,6 @@
 #include <iostream>
 #include <unordered_set>
+#include <vector>
 
 using namespace std;
 
@@ -38,25 +39,49 @@ void removeDuplicates(Node* head)
     }
 }
 
+Node* vectorToLinkedList(vector<int> vec)
+{
+    Node* head = nullptr;
+    Node* curr = nullptr;
+    for (int i = 0; i < vec.size(); ++i)
+    {
+        Node* node = new Node(vec[i]);
+        if (head == nullptr)
+        {
+            head = node;
+            curr = head;
+        }
+        else 
+        {
+            curr->next = node;
+            curr = node;
+        }
+    }
+
+    return head;
+}
+
+void printLinkedList(Node* head)
+{
+    Node* curr = head;
+    while (curr != nullptr)
+    {
+        cout << curr->value;
+        if (curr->next != nullptr) 
+        {
+            cout << "->";
+        }
+        curr = curr->next;
+    }
+    cout << endl;
+}
+
 int main()
 {
-    Node* one = new Node(0);
-    Node* two = new Node(1);
-    Node* three = new Node(2);
-    Node* four = new Node(2);
-    Node* five = new Node(3);
-    Node* six = new Node(4);
-    Node* seven = new Node(5);
-    Node* eight = new Node(1);
+    vector<int> vector = {0,1,2,2,4,5,6,8};
+    Node* list = vectorToLinkedList(vector);
 
-    one->next = two;
-    two->next = three;
-    three->next = four;
-    four->next = five;
-    five->next = six;
-    six->next = seven;
-    seven->next = eight;
-    eight->next = nullptr;
-
-    removeDuplicates(one);
+    printLinkedList(list);
+    removeDuplicates(list);
+    printLinkedList(list);
 }
