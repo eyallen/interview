@@ -1,8 +1,6 @@
 #include <iostream>
 #include <vector>
 
-using namespace std;
-
 struct Node 
 {
     int value;
@@ -15,7 +13,7 @@ struct Node
     }
 };
 
-Node* vectorToLinkedList(vector<int> vec)
+Node* vectorToLinkedList(std::vector<int> vec)
 {
     Node* head = nullptr;
     Node* curr = nullptr;
@@ -42,12 +40,12 @@ void printLinkedList(Node* head)
     Node* curr = head;
     while (curr != nullptr)
     {
-        cout << curr->value;
+        std::cout << curr->value;
         if (curr->next != nullptr) 
         {
-            cout << "->";
+            std::cout << "->";
         }
         curr = curr->next;
     }
-    cout << endl;
+    std::cout << std::endl;
 }

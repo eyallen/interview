@@ -72,4 +72,7 @@ int main()
 
     list = partitionLinkedList(list, 3);
     printLinkedList(list);
+
+    list = partitionLinkedList(list, 7);
+    printLinkedList(list);
 }
