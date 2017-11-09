@@ -84,17 +84,50 @@ bool isPalindrome(Node* head, int size)
     return true;
 }
 
+bool isPalindromRecursive(Node* head, int length, Node** res)
+{
+    if (head == nullptr || length <= 0)
+    {
+        *res = head;
+        return true;
+    }
+    if (length == 1)
+    {
+        *res = head->next;
+        return true;
+    }
+
+    Node* result;
+    bool isPal = isPalindromRecursive(head->next, length-2,&result);
+
+    if (!isPal || result == nullptr)
+    {
+        return isPal;
+    }
+
+    *res = result->next;
+    return head->value == result->value;
+}
+
+bool isPalindromeR(Node* head, int length)
+{
+    Node* n;
+    return isPalindromRecursive(head,length,&n);
+}
+
 int main()
 {
     vector<int> vec = {1,0,1,0,1};
     Node* list = vectorToLinkedList(vec);
     
     cout << isPalindrome(list, 5) << endl;
+    cout << isPalindromeR(list, 5) << endl;
     cout << isPalindrome(list) << endl;
 
     vec = {1,2,1,0,1};
     list = vectorToLinkedList(vec);
     
     cout << isPalindrome(list, 5) << endl;
+    cout << isPalindromeR(list, 5) << endl;
     cout << isPalindrome(list) << endl;
 }
