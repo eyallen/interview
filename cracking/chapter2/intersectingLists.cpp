@@ -12,8 +12,8 @@ bool areIntersecting(Node* a, Node* b, Node** intersecting)
 
     Node* currA = a;
     Node* currB = b;
-    int sizeA = 0;
-    int sizeB = 0;
+    int sizeA = 1;
+    int sizeB = 1;
 
     while(currA->next != nullptr)
     {
@@ -69,11 +69,13 @@ int main()
     Node* two = new Node(2);
     Node* three = new Node(3);
     Node* four = new Node(4);
+    Node* five = new Node(5);
 
     one->next = two;
     two->next = three;
     four->next = two;
+    five->next = four;
 
     Node* inter2;
-    cout << areIntersecting(one, four, &inter2) << " " << inter2->value << endl;
+    cout << areIntersecting(one, five, &inter2) << " " << inter2->value << endl;
 }
