@@ -1,11 +1,12 @@
-#include "linkedListHelpers.h"
+#include "../../datastructures/linkedList.h"
 
 using namespace std;
+using namespace datastructures;
 
-Node* detectLoop(Node* head)
+Node<int>* detectLoop(Node<int>* head)
 {
-    Node* faster = head;
-    Node* slower = head;
+    Node<int>* faster = head;
+    Node<int>* slower = head;
 
     while (faster != nullptr && faster->next != nullptr)
     {
@@ -38,9 +39,9 @@ Node* detectLoop(Node* head)
 int main()
 {
     vector<int> vec = {1,2,3,4,5,6,7,8};
-    Node* head = vectorToLinkedList(vec);
+    Node<int>* head = vectorToLinkedList(vec);
 
-    Node* tail = head;
+    Node<int>* tail = head;
     while (tail->next != nullptr)
     {
         tail = tail->next;
@@ -49,7 +50,7 @@ int main()
     // Node 5
     tail->next = head->next->next->next->next;
 
-    Node* loopStart = detectLoop(head);
+    Node<int>* loopStart = detectLoop(head);
     cout << loopStart->value << endl;
 
     // Node 7

@@ -1,25 +1,29 @@
-#include <iostream>
+#include<iostream>
 #include <vector>
 
-struct Node 
+namespace datastructures {
+
+template<class T>
+struct Node
 {
-    int value;
+    T value;
     Node* next;
 
-    Node(int val)
+    Node(T val)
     {
         value = val;
         next = nullptr;
     }
 };
 
-Node* vectorToLinkedList(std::vector<int> vec)
+template <class T>
+Node<T>* vectorToLinkedList(std::vector<T> vec)
 {
-    Node* head = nullptr;
-    Node* curr = nullptr;
+    Node<T>* head = nullptr;
+    Node<T>* curr = nullptr;
     for (int i = 0; i < vec.size(); ++i)
     {
-        Node* node = new Node(vec[i]);
+        Node<T>* node = new Node<T>(vec[i]);
         if (head == nullptr)
         {
             head = node;
@@ -35,9 +39,10 @@ Node* vectorToLinkedList(std::vector<int> vec)
     return head;
 }
 
-void printLinkedList(Node* head)
+template<class T>
+void printLinkedList(Node<T>* head)
 {
-    Node* curr = head;
+    Node<T>* curr = head;
     while (curr != nullptr)
     {
         std::cout << curr->value;
@@ -49,3 +54,5 @@ void printLinkedList(Node* head)
     }
     std::cout << std::endl;
 }
+
+} // namespace datastructures

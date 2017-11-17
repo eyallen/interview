@@ -1,16 +1,17 @@
-#include "linkedListHelpers.h"
+#include "../../datastructures/linkedList.h"
 
 using namespace std;
+using namespace datastructures;
 
-Node* appendValueToList(Node* head, int value)
+Node<int>* appendValueToList(Node<int>* head, int value)
 {
-    Node* node = new Node(value);
+    Node<int>* node = new Node(value);
     if (head == nullptr)
     {
         return node;
     }
 
-    Node* curr = head;
+    Node<int>* curr = head;
     while(curr->next != nullptr)
     {
         curr = curr->next;
@@ -20,11 +21,11 @@ Node* appendValueToList(Node* head, int value)
     return head;
 }
 
-Node* partitionLinkedList(Node* head, int pivot)
+Node<int>* partitionLinkedList(Node<int>* head, int pivot)
 {
-    Node* lt = nullptr;
-    Node* gt = nullptr;
-    Node* curr = head;
+    Node<int>* lt = nullptr;
+    Node<int>* gt = nullptr;
+    Node<int>* curr = head;
     
     while(curr != nullptr)
     {
@@ -49,7 +50,7 @@ Node* partitionLinkedList(Node* head, int pivot)
         return lt;
     }
 
-    Node* ltTail = lt;
+    Node<int>* ltTail = lt;
     while(ltTail->next != nullptr)
     {
         ltTail = ltTail->next;
@@ -63,7 +64,7 @@ int main()
 {
     vector<int> vec = {3,5,8,5,10,2,1};
 
-    Node* list = vectorToLinkedList(vec);
+    Node<int>* list = vectorToLinkedList(vec);
     list = partitionLinkedList(list, 5);
     printLinkedList(list);
 

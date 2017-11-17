@@ -1,17 +1,18 @@
-#include "linkedListHelpers.h"
+#include "../../datastructures/linkedList.h"
 #include <iostream>
 #include <stack>
 
 using namespace std;
+using namespace datastructures;
 
 // 1->2->1
 
 // When we don't know the length
-bool isPalindrome(Node* head)
+bool isPalindrome(Node<int>* head)
 {
     stack<int> valStack;
-    Node* slow = head;
-    Node* fast = head;
+    Node<int>* slow = head;
+    Node<int>* fast = head;
 
     while (slow != nullptr && fast->next != nullptr)
     {
@@ -43,7 +44,7 @@ bool isPalindrome(Node* head)
 }
 
 // When we know the length
-bool isPalindrome(Node* head, int size)
+bool isPalindrome(Node<int>* head, int size)
 {
     if (head == nullptr || size == 0)
     {
@@ -57,7 +58,7 @@ bool isPalindrome(Node* head, int size)
     stack<int> valStack;
     int middle = size / 2;
     bool isOddSize = size % 2 != 0;
-    Node* curr = head;
+    Node<int>* curr = head;
     for (int i = 0; i < size; ++i)
     {
         if (i < middle)
@@ -84,7 +85,7 @@ bool isPalindrome(Node* head, int size)
     return true;
 }
 
-bool isPalindromRecursive(Node* head, int length, Node** res)
+bool isPalindromRecursive(Node<int>* head, int length, Node<int>** res)
 {
     if (head == nullptr || length <= 0)
     {
@@ -97,7 +98,7 @@ bool isPalindromRecursive(Node* head, int length, Node** res)
         return true;
     }
 
-    Node* result;
+    Node<int>* result;
     bool isPal = isPalindromRecursive(head->next, length-2,&result);
 
     if (!isPal || result == nullptr)
@@ -109,16 +110,16 @@ bool isPalindromRecursive(Node* head, int length, Node** res)
     return head->value == result->value;
 }
 
-bool isPalindromeR(Node* head, int length)
+bool isPalindromeR(Node<int>* head, int length)
 {
-    Node* n;
+    Node<int>* n;
     return isPalindromRecursive(head,length,&n);
 }
 
 int main()
 {
     vector<int> vec = {1,0,1,0,1};
-    Node* list = vectorToLinkedList(vec);
+    Node<int>* list = vectorToLinkedList(vec);
     
     cout << isPalindrome(list, 5) << endl;
     cout << isPalindromeR(list, 5) << endl;
