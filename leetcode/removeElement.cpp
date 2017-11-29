@@ -35,4 +35,5 @@ int main()
     vec = {3};
 
     cout << removeElement(vec, 3) << endl;
+    cout << removeElement(vec, 3) << endl;
 }
