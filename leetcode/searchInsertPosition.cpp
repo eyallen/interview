@@ -3,26 +3,29 @@
 
 using namespace std;
 
-// TODO: We can do this with log(n) with a modified binary search
 int searchInsert(vector<int>& nums, int target) 
 {
-    if (nums.size() == 0)
+    int low = 0;
+    int high = nums.size() - 1;
+    
+    while(low < high)
     {
-        return 0;
-    }
-
-    int insertIndex = 0;
-    for(int n : nums)
-    {
-        if (target <= n)
+        int mid = (low + high) / 2;
+        if (nums[mid] == target)
         {
-            return insertIndex;
+            return mid;
         }
-
-        insertIndex++;
+        else if (nums[mid] > target)
+        {
+            high = mid - 1;
+        }
+        else 
+        {
+            low = mid + 1;
+        }
     }
-
-    return insertIndex++;
+    
+    return low;
 }
 
 int main()
