@@ -22,7 +22,17 @@ vector<int> findStartPosition(vector<vector<char>>& board, char c)
 
 bool pathExists(vector<vector<char>>& board, int r, int c, string word, int pos)
 {
-    if (r < 0 || c < 0 || r >= board.size() || c >= board[0].size() || pos >= word.length())
+    if (r < 0 || c < 0 || pos > word.length())
+    {
+        return false;
+    }
+
+    if (word[pos] == 0)
+    {
+        return true;
+    }
+
+    if (r >= board.size() || c >= board[0].size())
     {
         return false;
     }
@@ -31,12 +41,6 @@ bool pathExists(vector<vector<char>>& board, int r, int c, string word, int pos)
     {
         // Mark this as 'visited' by setting it to null
         board[r][c] = 0;
-
-        // If we are on the last character, just return true
-        if (pos == word.length() - 1)
-        {
-            return true;
-        }
 
         // Otherwise, increment char and try all adjacent
         bool found = pathExists(board, r+1,c, word, pos+1) ||
@@ -53,9 +57,7 @@ bool pathExists(vector<vector<char>>& board, int r, int c, string word, int pos)
         return found;
     }
 
-    // Keep looking
-    return pathExists(board, r+1, c, word, pos) ||
-        pathExists(board, r, c+1, word, pos);
+    return false;
 }
 
 /*
@@ -75,7 +77,18 @@ bool exist(vector<vector<char> >& board, string word)
         return true;
     }
 
-    return pathExists(board, 0, 0, word, 0);
+    for (int r = 0; r < board.size(); r++)
+    {
+        for (int c = 0; c < board[0].size(); c++)
+        {
+            if (pathExists(board, r, c, word, 0))
+            {
+                return true;
+            }
+        }
+    }
+
+    return false;
 }
 
 int main()
@@ -90,4 +103,13 @@ int main()
     board.push_back(r3);
 
     cout << exist(board, "BDIFCBB") << endl;
+
+    r1 = {'A','B'};
+    r2 = {'C','D'};
+
+    board = vector<vector<char>>();
+    board.push_back(r1);
+    board.push_back(r2);
+
+    cout << exist(board, "ABDC") << endl;
 }
