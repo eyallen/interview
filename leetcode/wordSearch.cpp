@@ -39,13 +39,23 @@ bool pathExists(vector<vector<char>>& board, int r, int c, string word, int pos)
         }
 
         // Otherwise, increment char and try all adjacent
-        return pathExists(board, r+1,c, word, pos+1) ||
-               pathExists(board, r-1,c, word, pos+1) ||
-               pathExists(board, r,c+1, word, pos+1) ||
-               pathExists(board, r,c-1, word, pos+1);
+        bool found = pathExists(board, r+1,c, word, pos+1) ||
+                    pathExists(board, r-1,c, word, pos+1) ||
+                    pathExists(board, r,c+1, word, pos+1) ||
+                    pathExists(board, r,c-1, word, pos+1);
+        
+        if (!found)
+        {
+            // Reset the character
+            board[r][c] = word[pos];
+        }
+
+        return found;
     }
 
-    return false;
+    // Keep looking
+    return pathExists(board, r+1, c, word, pos) ||
+        pathExists(board, r, c+1, word, pos);
 }
 
 /*
@@ -65,21 +75,19 @@ bool exist(vector<vector<char> >& board, string word)
         return true;
     }
 
-    vector<int> startPos = findStartPosition(board, word[0]);
-
-    return pathExists(board, startPos[0], startPos[1], word, 0);
+    return pathExists(board, 0, 0, word, 0);
 }
 
 int main()
 {
     vector<char> r1 = {'A','B','C'};
-    vector<char> r2 = {'D','E','F'};
-    vector<char> r3 = {'G','H','I'};
+    vector<char> r2 = {'D','B','F'};
+    vector<char> r3 = {'G','D','I'};
 
     vector<vector<char>> board = vector<vector<char>>();
     board.push_back(r1);
     board.push_back(r2);
     board.push_back(r3);
 
-    cout << exist(board, "BEFIHE") << endl;
+    cout << exist(board, "BDIFCBB") << endl;
 }
