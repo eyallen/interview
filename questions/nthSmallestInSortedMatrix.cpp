@@ -4,6 +4,8 @@
 
 using namespace std;
 
+// TODO: doesn't actually take advantage of the sorted nature of the matrix
+// Need to pop out sooner.
 int findNthSmallest(vector<vector<int>> matrix, int n)
 {
     priority_queue<int> q = priority_queue<int>();
