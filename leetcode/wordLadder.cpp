@@ -63,7 +63,7 @@ int ladderLength(string beginWord, string endWord, vector<string>& wordList)
         length++;
     }
 
-    return length;
+    return 0;
 }
 
 int main()
@@ -71,4 +71,5 @@ int main()
     vector<string> wordList = {"hot","dot","dog","lot","log","cog"};
     cout << ladderLength("hit", "cog", wordList) << endl;
     cout << ladderLength("hit", "dot", wordList) << endl;
+    cout << ladderLength("hit", "not", wordList) << endl;
 }
